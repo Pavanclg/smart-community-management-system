@@ -2,6 +2,11 @@
 
 A MERN Stack based web application for managing community issues efficiently.
 
+🚀 **Live Demo:**
+https://smart-community-management-system-1.onrender.com
+
+---
+
 ## Features
 
 * User Registration & Login
@@ -13,6 +18,10 @@ A MERN Stack based web application for managing community issues efficiently.
 * Delete Issues
 * Search and Filter Issues
 * Responsive Dashboard
+* MongoDB Atlas Integration
+* Deployed on Render
+
+---
 
 ## Tech Stack
 
@@ -32,6 +41,8 @@ A MERN Stack based web application for managing community issues efficiently.
 * JWT Authentication
 * Multer
 
+---
+
 ## Installation
 
 ### Clone Repository
@@ -39,6 +50,8 @@ A MERN Stack based web application for managing community issues efficiently.
 ```bash
 git clone https://github.com/Pavanclg/smart-community-management-system.git
 ```
+
+---
 
 ### Frontend Setup
 
@@ -48,6 +61,8 @@ npm install
 npm run dev
 ```
 
+---
+
 ### Backend Setup
 
 ```bash
@@ -55,6 +70,8 @@ cd server
 npm install
 npm start
 ```
+
+---
 
 ## Environment Variables
 
@@ -65,6 +82,16 @@ MONGO_URI=your_mongodb_url
 JWT_SECRET=your_secret_key
 ```
 
+---
+
+## Deployment
+
+* Frontend Hosted on Render Static Site
+* Backend Hosted on Render Web Service
+* Database Hosted on MongoDB Atlas
+
+---
+
 ## Author
 
-Pavankumar V
+**Pavankumar V**
