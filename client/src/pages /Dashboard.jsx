@@ -38,7 +38,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             const res = await axios.post(
-                "http://localhost:5000/api/issues",
+                "https://smart-community-management-system.onrender.com/api/issues",
                 formData,
                 {
                     headers: {
@@ -85,7 +85,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             const res = await axios.get(
-                "http://localhost:5000/api/issues",
+                "https://smart-community-management-system.onrender.com/api/issues",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -111,7 +111,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `http://localhost:5000/api/issues/${id}`,
+                `https://smart-community-management-system.onrender.com/api/issues/${id}`,
                 {
                     status: "Resolved"
                 },
@@ -144,7 +144,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             await axios.delete(
-                `http://localhost:5000/api/issues/${id}`,
+                `https://smart-community-management-system.onrender.com/api/issues/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -398,7 +398,7 @@ function Dashboard() {
             {
                 issue.image && (
                     <img
-                        src={`http://localhost:5000/${issue.image}`}
+                        src={`https://smart-community-management-system.onrender.com/${issue.image}`}
                         alt="issue"
                     />
                 )
