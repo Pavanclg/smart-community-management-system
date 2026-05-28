@@ -67,4 +67,4 @@ JWT_SECRET=your_secret_key
 
 ## Author
 
-Pavan Kumar V
+Pavankumar V
