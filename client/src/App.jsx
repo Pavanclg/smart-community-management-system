@@ -5,6 +5,8 @@ import Register from "./pages /Register.jsx";
 import Dashboard from "./pages /Dashboard.jsx";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AISuggestion from "./pages /AISuggestion.jsx";
+
 function App() {
 
     return (
@@ -30,6 +32,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Dashboard />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/ai"
+                    element={
+                        <ProtectedRoute>
+                            <AISuggestion />
                         </ProtectedRoute>
                     }
                 />
