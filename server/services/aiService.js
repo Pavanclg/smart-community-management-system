@@ -19,8 +19,8 @@ const getSuggestion = async (data) => {
         return response.text();
 
     } catch (error) {
-        console.log("Gemini Error:", error);
-        return "AI suggestion unavailable";
+    console.log("Gemini Error Full:", error);
+    return "AI suggestion unavailable";
     }
 };
 
