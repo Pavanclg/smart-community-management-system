@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const getSuggestion = async (data) => {
     try {
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash"  // ✅ Updated model name
+            model: "gemini-1.5-flash"  // ✅ Updated model name
         });
 
         const prompt = `
