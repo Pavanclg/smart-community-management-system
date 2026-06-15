@@ -1,81 +1,246 @@
-body {
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
+    box-sizing: border-box;
 }
 
-h1 {
-    color: #2c3e50;
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #1e293b
+    );
+    min-height: 100vh;
+    color: white;
 }
 
 .container {
     width: 90%;
+    max-width: 1200px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
 }
 
-form {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+/* NAVBAR */
+
+nav {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #22c55e;
+}
+
+/* TITLES */
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 15px;
+}
+
+/* CARD STYLE */
+
+.card,
+form,
+.issue-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 25px;
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.25);
+}
+
+/* INPUTS */
 
 input,
-textarea {
+textarea,
+select {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
+    color: white;
     font-size: 15px;
 }
 
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border: 1px solid #22c55e;
+    box-shadow: 0 0 10px rgba(34,197,94,0.3);
+}
+
+/* BUTTONS */
+
 button {
-    background-color: #3498db;
+    background: linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a
+    );
+
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
+    padding: 14px 25px;
+    border-radius: 12px;
     cursor: pointer;
-    margin-top: 10px;
     font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 25px rgba(34,197,94,0.4);
 }
 
+/* LOGOUT */
+
+.logout-btn {
+    background: linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+}
+
+.logout-btn:hover {
+    box-shadow:
+        0 10px 25px rgba(239,68,68,0.4);
+}
+
+/* ISSUE CARDS */
+
 .issue-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
 }
 
 .issue-card img {
-    width: 250px;
-    border-radius: 10px;
-    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin-top: 15px;
 }
 
+/* STATUS */
+
 .pending {
-    color: red;
+    color: #f97316;
     font-weight: bold;
 }
 
 .resolved {
-    color: green;
+    color: #22c55e;
     font-weight: bold;
 }
 
-.logout-btn {
-    background-color: crimson;
+/* ECO SCORE */
+
+.score-box {
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
+
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.logout-btn:hover {
-    background-color: darkred;
+/* LOGIN PAGE */
+
+.login-container {
+    width: 450px;
+    margin: 80px auto;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #22c55e;
+    border-radius: 20px;
+}
+.hero-section {
+    background: linear-gradient(
+        135deg,
+        #22c55e,
+        #0ea5e9
+    );
+
+    padding: 40px;
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.3);
+}
+
+.hero-section h1 {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    color: rgba(255,255,255,0.9);
+    font-size: 18px;
 }

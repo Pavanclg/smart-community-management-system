@@ -186,17 +186,27 @@ function Dashboard() {
 
 
 
-    return (
+return (
 
-        <div className="container">
+    <div className="container">
 
-            <h1>Smart Community Dashboard</h1>
+        <div className="hero-section">
 
-            <button
-                className="logout-btn"
-                onClick={logoutUser}
-            >
-                Logout
+            <h1>🏙️ Smart Community Management System</h1>
+
+            <p>
+                Report Issues • AI Suggestions • Sustainability Tracking 
+            </p>
+
+        </div>
+
+        <h1>Smart Community Dashboard</h1>
+
+        <button
+            className="logout-btn"
+            onClick={logoutUser}
+        >
+            Logout
             </button>
 
             <br /><br />

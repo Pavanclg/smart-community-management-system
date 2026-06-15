@@ -23,49 +23,65 @@ function Navbar() {
             }}
         >
 
-            <Link
-                to="/"
-                style={{ color: "white", textDecoration: "none" }}
-            >
-                Login
-            </Link>
+            {!token && (
+                <Link
+                    to="/"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    Login
+                </Link>
+            )}
 
-            <Link
-                to="/register"
-                style={{ color: "white", textDecoration: "none" }}
-            >
-                Register
-            </Link>
+            {!token && (
+                <Link
+                    to="/register"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    Register
+                </Link>
+            )}
 
-            {
-                token && (
+            {token && (
+                <Link
+                    to="/dashboard"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    Dashboard
+                </Link>
+            )}
 
-                    <Link
-                        to="/dashboard"
-                        style={{ color: "white", textDecoration: "none" }}
-                    >
-                        Dashboard
-                    </Link>
-                )
-            }
+            {token && (
+                <Link
+                    to="/ai"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    AI Suggestion
+                </Link>
+            )}
 
-            {
-                token && (
+            {token && (
+                <Link
+                    to="/sustainability"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    Sustainability
+                </Link>
+            )}
 
-                    <button
-                        onClick={logoutUser}
-                        style={{
-                            background: "crimson",
-                            color: "white",
-                            border: "none",
-                            padding: "5px 10px",
-                            cursor: "pointer"
-                        }}
-                    >
-                        Logout
-                    </button>
-                )
-            }
+            {token && (
+                <button
+                    onClick={logoutUser}
+                    style={{
+                        background: "crimson",
+                        color: "white",
+                        border: "none",
+                        padding: "5px 10px",
+                        cursor: "pointer"
+                    }}
+                >
+                    Logout
+                </button>
+            )}
 
         </nav>
     );

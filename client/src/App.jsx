@@ -6,6 +6,7 @@ import Dashboard from "./pages /Dashboard.jsx";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AISuggestion from "./pages /AISuggestion.jsx";
+import Sustainability from "./pages /Sustainability.jsx";
 
 function App() {
 
@@ -40,6 +41,14 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <AISuggestion />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/sustainability"
+                    element={
+                        <ProtectedRoute>
+                            <Sustainability />
                         </ProtectedRoute>
                     }
                 />
