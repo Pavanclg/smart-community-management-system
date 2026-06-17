@@ -54,6 +54,8 @@ const createIssue = async (req, res) => {
 const getIssues = async (req, res) => {
 
     try {
+        console.log("User Role:", req.user.role);
+console.log("User ID:", req.user.id);
 
         let issues;
 

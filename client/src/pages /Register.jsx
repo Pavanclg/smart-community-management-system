@@ -1,18 +1,55 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Register() {
+
+    const [showPassword, setShowPassword] = useState(false);
+const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
 
         e.preventDefault();
+
+        setError("");
+
+        if (!name || !email || !password || !confirmPassword) {
+            setError("All fields are required");
+            return;
+        }
+
+        if (name.length < 3) {
+            setError("Name must be at least 3 characters");
+            return;
+        }
+
+        if (!email.includes("@")) {
+            setError("Enter a valid email");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match");
+            return;
+        }
+
+        setLoading(true);
 
         try {
 
@@ -25,64 +62,113 @@ function Register() {
                 }
             );
 
-            alert("Registration Successful");
+            setLoading(false);
+
+            toast.success("Registration Successful");
 
             navigate("/");
 
         } catch (error) {
 
-            console.log(error);
+            setLoading(false);
 
-            alert("Registration Failed");
+            toast.error("Registration Failed");
         }
     };
 
     return (
 
-        <div>
+        <div className="register-page">
 
-            <h1>Register Page</h1>
+            <div className="register-container">
 
-            <form onSubmit={handleRegister}>
+                <h1>Register</h1>
 
-                <input
-                    type="text"
-                    placeholder="Enter Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
+                {
+                    error && (
+                        <p className="error-text">
+                            {error}
+                        </p>
+                    )
+                }
 
-                <br /><br />
+                <form onSubmit={handleRegister}>
 
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <input
+                        type="text"
+                        placeholder="Enter Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
 
-                <br /><br />
+                    <input
+                        type="email"
+                        placeholder="Enter Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                   <div className="password-box">
 
-                <br /><br />
+    <input
+        type={showPassword ? "text" : "password"}
+        placeholder="Enter Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+    />
 
-                <button type="submit">
-                    Register
-                </button>
+    <span
+        className="eye-icon"
+        onClick={() => setShowPassword(!showPassword)}
+    >
+        {showPassword ? "🙈" : "👁️"}
+    </span>
 
-                <br /><br />
+</div>
 
-                <Link to="/">
-                    Already have account? Login
-                </Link>
+                   <div className="password-box">
 
-            </form>
+    <input
+        type={showConfirmPassword ? "text" : "password"}
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+    />
+
+    <span
+        className="eye-icon"
+        onClick={() =>
+            setShowConfirmPassword(!showConfirmPassword)
+        }
+    >
+        {showConfirmPassword ? "🙈" : "👁️"}
+    </span>
+
+</div>
+
+                    <button type="submit">
+
+                        {
+                            loading
+                            ? "Registering..."
+                            : "Register"
+                        }
+
+                    </button>
+
+                    <p className="login-link">
+
+                        Already have an account?
+
+                        <Link to="/">
+                            Login
+                        </Link>
+
+                    </p>
+
+                </form>
+
+            </div>
 
         </div>
     );

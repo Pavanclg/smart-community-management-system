@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function Dashboard() {
 
@@ -48,7 +49,7 @@ function Dashboard() {
                 }
             );
 
-            alert("Issue Submitted");
+            toast.success("Issue Created Successfully");
 
             console.log(res.data);
 
@@ -122,7 +123,7 @@ function Dashboard() {
                 }
             );
 
-            alert("Issue Resolved");
+            toast.success("Issue Updated Successfully");
 
             fetchIssues();
 
@@ -152,7 +153,7 @@ function Dashboard() {
                 }
             );
 
-            alert("Issue Deleted");
+            toast.success("Issue Deleted Successfully");
 
             fetchIssues();
 
@@ -160,7 +161,7 @@ function Dashboard() {
 
             console.log(error);
 
-            alert("Delete Failed");
+            toast.error("Failed to Delete Issue");
         }
     };
 
@@ -200,13 +201,36 @@ return (
 
         <div className="hero-section">
 
-            <h1>🏙️ Smart Community Management System</h1>
+    <div className="hero-left">
 
-            <p>
-                Report Issues • AI Suggestions • Sustainability Tracking 
-            </p>
+        <h1>
+            Smart Community
+            <br />
+            Management System
+        </h1>
 
-        </div>
+        <p>
+            Report issues, receive AI suggestions,
+            and track sustainability efforts
+            in one platform.
+        </p>
+
+        <button>
+            Report Issue
+        </button>
+
+    </div>
+
+    <div className="hero-right">
+
+        <img
+            src="https://cdn-icons-png.flaticon.com/512/619/619153.png"
+            alt="community"
+        />
+
+    </div>
+
+</div>
 
         <h1>Smart Community Dashboard</h1>
 
@@ -336,7 +360,7 @@ return (
 
 <br /><br />
 
-
+<div className="issues-grid">
 {
     issues
 
@@ -382,6 +406,9 @@ return (
             <p>
                 Category: {issue.category}
             </p>
+            <span className="category-badge">
+    {issue.category}
+</span>
 
             <p>
                 Location: {issue.location}
@@ -450,6 +477,7 @@ return (
         </div>
     ))
 }
+</div>
 
         </div>
     );

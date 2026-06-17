@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Login from "./pages /Login.jsx";
 import Register from "./pages /Register.jsx";
@@ -11,13 +11,18 @@ import Notifications from "./pages /Notifications.jsx";
 
 import Profile from "./pages /Profile.jsx";
 
-function App() {
+function AppContent() {
+
+    const location = useLocation();
+
+    const hideNavbar =
+        location.pathname === "/" ||
+        location.pathname === "/register";
 
     return (
+        <>
 
-        <BrowserRouter>
-
-            <Navbar />
+            {!hideNavbar && <Navbar />}
 
             <Routes>
 
@@ -39,6 +44,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
                 <Route
                     path="/ai"
                     element={
@@ -47,6 +53,7 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
                 <Route
                     path="/sustainability"
                     element={
@@ -55,20 +62,38 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+
                 <Route
                     path="/notifications"
-                    element={<Notifications />}
+                    element={
+                        <ProtectedRoute>
+                            <Notifications />
+                        </ProtectedRoute>
+                    }
                 />
+
                 <Route
                     path="/profile"
-                    element={<Profile />}
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
                 />
 
             </Routes>
 
-        </BrowserRouter>
+        </>
     );
 }
 
+function App() {
+
+    return (
+        <BrowserRouter>
+            <AppContent />
+        </BrowserRouter>
+    );
+}
 
 export default App;
