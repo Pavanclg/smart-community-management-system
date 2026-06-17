@@ -13,7 +13,7 @@ function Sustainability() {
         try {
 
             const res = await axios.post(
-                "https://smart-community-management-system.onrender.com/api/sustainability",
+                "http://localhost:5000/api/sustainability",
                 {
                     water,
                     electricity,

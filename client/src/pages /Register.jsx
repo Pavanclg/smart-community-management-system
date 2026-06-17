@@ -17,7 +17,7 @@ function Register() {
         try {
 
             await axios.post(
-                "https://smart-community-management-system.onrender.com/api/auth/register",
+                "http://localhost:5000/api/auth/register",
                 {
                     name,
                     email,

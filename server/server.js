@@ -8,6 +8,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const issueRoutes = require("./routes/issueRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 const sustainabilityRoutes =
 require("./routes/sustainabilityRoutes");
 
@@ -24,6 +25,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/issues", issueRoutes);
+app.use("/api/notifications", notificationRoutes);
 app.use(
     "/api/sustainability",
     sustainabilityRoutes

@@ -38,7 +38,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             const res = await axios.post(
-                "https://smart-community-management-system.onrender.com/api/issues",
+                "http://localhost:5000/api/issues",
                 formData,
                 {
                     headers: {
@@ -85,7 +85,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             const res = await axios.get(
-                "https://smart-community-management-system.onrender.com/api/issues",
+                "http://localhost:5000/api/issues",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -111,7 +111,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             await axios.put(
-                `https://smart-community-management-system.onrender.com/api/issues/${id}`,
+                `http://localhost:5000/api/issues/${id}`,
                 {
                     status: "Resolved"
                 },
@@ -144,7 +144,7 @@ function Dashboard() {
             const token = localStorage.getItem("token");
 
             await axios.delete(
-                `https://smart-community-management-system.onrender.com/api/issues/${id}`,
+                `http://localhost:5000/api/issues/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -185,7 +185,15 @@ function Dashboard() {
     }, []);
 
 
+const totalIssues = issues.length;
 
+const pendingIssues = issues.filter(
+    issue => issue.status === "Pending"
+).length;
+
+const resolvedIssues = issues.filter(
+    issue => issue.status === "Resolved"
+).length;
 return (
 
     <div className="container">
@@ -210,7 +218,24 @@ return (
             </button>
 
             <br /><br />
+        <div className="stats-container">
 
+        <div className="card">
+            <h3>Total Issues</h3>
+            <h2>{totalIssues}</h2>
+        </div>
+
+        <div className="card">
+            <h3>Pending</h3>
+            <h2>{pendingIssues}</h2>
+        </div>
+
+            <div className="card">
+            <h3>Resolved</h3>
+            <h2>{resolvedIssues}</h2>
+            </div>
+
+        </div>
             <h3>Create Community Issue</h3>
 
             <form onSubmit={submitIssue}>
@@ -232,12 +257,17 @@ return (
 
                 <br /><br />
 
-                <input
-                    type="text"
-                    placeholder="Category"
+                <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                />
+                >
+                    <option value="">Select Category</option>
+                    <option value="Water">Water</option>
+                    <option value="Electricity">Electricity</option>
+                    <option value="Garbage">Garbage</option>
+                    <option value="Road">Road</option>
+                    <option value="Security">Security</option>
+                </select>
 
                 <br /><br />
 
@@ -356,6 +386,9 @@ return (
             <p>
                 Location: {issue.location}
             </p>
+            <p>
+                Created: {new Date(issue.createdAt).toLocaleDateString("en-GB")}
+            </p>
 
             <p>
 
@@ -408,7 +441,7 @@ return (
             {
                 issue.image && (
                     <img
-                        src={`https://smart-community-management-system.onrender.com/${issue.image}`}
+                        src={`http://localhost:5000/${issue.image}`}
                         alt="issue"
                     />
                 )

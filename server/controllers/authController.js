@@ -3,6 +3,32 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
+const Issue = require("../models/Issue");
+
+const getProfile = async (req, res) => {
+
+    try {
+
+        const user = await User.findById(req.user.id)
+        .select("-password");
+
+        const totalIssues = await Issue.countDocuments({
+            createdBy: req.user.id
+        });
+
+        res.json({
+            user,
+            totalIssues
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+
+    }
+};
 // REGISTER
 const registerUser = async (req, res) => {
 
@@ -96,7 +122,10 @@ const loginUser = async (req, res) => {
     }
 };
 
+
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getProfile
 };

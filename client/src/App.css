@@ -244,3 +244,15 @@ button:hover {
     color: rgba(255,255,255,0.9);
     font-size: 18px;
 }
+.stats-container{
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    flex:1;
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+}

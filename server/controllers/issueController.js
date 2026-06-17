@@ -1,9 +1,10 @@
 const Issue = require("../models/Issue");
+const Notification = require("../models/Notification");
 
 
 // CREATE ISSUE
 const createIssue = async (req, res) => {
-
+ console.log("CREATE ISSUE HIT");
     try {
 
         const {
@@ -25,6 +26,11 @@ const createIssue = async (req, res) => {
             createdBy: req.user.id
 
         });
+      await Notification.create({
+    userId: issue.createdBy,
+    message: `New issue reported: ${issue.title}`
+});
+        console.log("Notification Created for Issue:");
 
         res.status(201).json({
             message: "Issue created successfully",
@@ -33,9 +39,11 @@ const createIssue = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
-            message: error.message
-        });
+    console.log("ERROR:", error);
+
+    res.status(500).json({
+        message: error.message
+    });
 
     }
 };
@@ -47,8 +55,21 @@ const getIssues = async (req, res) => {
 
     try {
 
-        const issues = await Issue.find()
-        .populate("createdBy", "name email");
+        let issues;
+
+        if (req.user.role === "admin") {
+
+            issues = await Issue.find()
+            .populate("createdBy", "name email");
+
+        } else {
+
+            issues = await Issue.find({
+                createdBy: req.user.id
+            })
+            .populate("createdBy", "name email");
+
+        }
 
         res.status(200).json(issues);
 
@@ -65,7 +86,7 @@ const getIssues = async (req, res) => {
 
 // UPDATE ISSUE STATUS
 const updateIssueStatus = async (req, res) => {
-
+console.log("UPDATE ISSUE HIT");
     try {
 
         const issue = await Issue.findById(req.params.id);
@@ -82,6 +103,17 @@ const updateIssueStatus = async (req, res) => {
 
         await issue.save();
 
+        // CREATE NOTIFICATION
+      console.log("Issue Found:", issue);
+
+await Notification.create({
+    userId: issue.createdBy,
+    message: `Your issue "${issue.title}" has been resolved`
+});
+
+console.log("Notification Saved");
+
+
         res.status(200).json({
             message: "Issue updated successfully",
             issue
@@ -89,9 +121,11 @@ const updateIssueStatus = async (req, res) => {
 
     } catch (error) {
 
-        res.status(500).json({
-            message: error.message
-        });
+    console.log("ERROR:", error);
+
+    res.status(500).json({
+        message: error.message
+    });
 
     }
 };

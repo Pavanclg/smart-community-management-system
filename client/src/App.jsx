@@ -7,6 +7,9 @@ import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AISuggestion from "./pages /AISuggestion.jsx";
 import Sustainability from "./pages /Sustainability.jsx";
+import Notifications from "./pages /Notifications.jsx";
+
+import Profile from "./pages /Profile.jsx";
 
 function App() {
 
@@ -51,6 +54,14 @@ function App() {
                             <Sustainability />
                         </ProtectedRoute>
                     }
+                />
+                <Route
+                    path="/notifications"
+                    element={<Notifications />}
+                />
+                <Route
+                    path="/profile"
+                    element={<Profile />}
                 />
 
             </Routes>
