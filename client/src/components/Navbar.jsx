@@ -26,7 +26,7 @@ const fetchNotificationCount = async () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-            "http://localhost:5000/api/notifications/count",
+            "https://smart-community-management-system.onrender.com/api/notifications/count",
             {
                 headers: {
                     Authorization: `Bearer ${token}`

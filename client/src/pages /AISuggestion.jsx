@@ -14,7 +14,7 @@ function AISuggestion() {
         try {
 
             const res = await axios.post(
-                "http://localhost:5000/api/ai/suggestion",
+                "https://smart-community-management-system.onrender.com/api/ai/suggestion",
                 {
                     water,
                     electricity,

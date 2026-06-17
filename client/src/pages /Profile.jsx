@@ -17,7 +17,7 @@ function Profile() {
             const token = localStorage.getItem("token");
 
             const res = await axios.get(
-                "http://localhost:5000/api/auth/profile",
+                "https://smart-community-management-system.onrender.com/api/auth/profile",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
