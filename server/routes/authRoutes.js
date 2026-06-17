@@ -22,15 +22,7 @@ router.post("/login", loginUser);
 router.get("/profile", protect, getProfile);
 
 
-// Protected Route
-router.get("/profile", protect, (req, res) => {
 
-    res.json({
-        message: "Protected profile accessed",
-        user: req.user
-    });
-
-});
 
 
 module.exports = router;
