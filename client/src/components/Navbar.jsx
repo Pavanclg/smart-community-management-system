@@ -52,112 +52,82 @@ const fetchNotificationCount = async () => {
 
     return (
 
-        <nav
-            style={{
-                background: "#2c3e50",
-                padding: "15px",
-                display: "flex",
-                gap: "20px"
-            }}
-        >
+    <nav className="navbar">
+
+        <div className="logo">
+  <span>🏘️</span>
+  <h2>Smart Community</h2>
+</div>
+
+        <div className="navbar-links">
 
             {!token && (
-                <Link
-                    to="/"
-                    style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link to="/" className="nav-link">
                     Login
                 </Link>
             )}
 
             {!token && (
-                <Link
-                    to="/register"
-                    style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link to="/register" className="nav-link">
                     Register
                 </Link>
             )}
 
             {token && (
-                <Link
-                    to="/dashboard"
-                    style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link to="/dashboard" className="nav-link">
                     Dashboard
                 </Link>
             )}
 
             {token && (
-                <Link
-                    to="/ai"
-                    style={{ color: "white", textDecoration: "none" }}
-                >
-                    AI Suggestion
+                <Link to="/ai" className="nav-link">
+                    AI Suggestions
                 </Link>
             )}
-            {token && (
-    <Link
-        to="/profile"
-        style={{ color: "white", textDecoration: "none" }}
-    >
-        Profile
-    </Link>
-)}
 
             {token && (
-                <Link
-                    to="/sustainability"
-                    style={{ color: "white", textDecoration: "none" }}
-                >
+                <Link to="/profile" className="nav-link">
+                    Profile
+                </Link>
+            )}
+
+            {token && (
+                <Link to="/sustainability" className="nav-link">
                     Sustainability
                 </Link>
             )}
-            {token && (
-    <Link
-        to="/notifications"
-        style={{
-            color: "white",
-            textDecoration: "none",
-            position: "relative"
-        }}
-    >
-        Notifications
 
-        {notificationCount > 0 && (
-            <span
-                style={{
-                    background: "red",
-                    color: "white",
-                    borderRadius: "50%",
-                    padding: "2px 6px",
-                    marginLeft: "5px",
-                    fontSize: "12px"
-                }}
-            >
-                {notificationCount}
-            </span>
-        )}
-
-    </Link>
-)}
             {token && (
-                <button
-                    onClick={logoutUser}
-                    style={{
-                        background: "crimson",
-                        color: "white",
-                        border: "none",
-                        padding: "5px 10px",
-                        cursor: "pointer"
-                    }}
+                <Link
+                    to="/notifications"
+                    className="nav-link notification-link"
                 >
-                    Logout
-                </button>
+                    Notifications
+
+                    {notificationCount > 0 && (
+                        <span className="notification-count">
+                            {notificationCount}
+                        </span>
+                    )}
+                </Link>
             )}
 
-        </nav>
-    );
+        </div>
+
+        {token && (
+            <button
+                onClick={logoutUser}
+                className="nav-logout"
+            >
+                Logout
+            </button>
+        )}
+
+    </nav>
+    
+
+);
+
 }
 
 export default Navbar;

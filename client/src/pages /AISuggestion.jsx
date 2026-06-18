@@ -27,7 +27,8 @@ function AISuggestion() {
         } catch (error) {
 
             console.log(error);
-            alert("AI Suggestion Failed");
+            
+            toast.error("AI Suggestion Failed");    
         }
     };
 
@@ -72,7 +73,9 @@ function AISuggestion() {
 
             <h3>AI Suggestion</h3>
 
-            <p>{suggestion}</p>
+            <div className="suggestion-box">
+                        {suggestion}
+        </div>
 
         </div>
     );

@@ -26,7 +26,8 @@ function Sustainability() {
         } catch (error) {
 
             console.log(error);
-            alert("Failed to save sustainability data");
+            
+            touch.success("Failed to save sustainability data");
         }
     };
 

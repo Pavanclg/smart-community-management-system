@@ -1,20 +1,52 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
+import axios from "axios";
+
 function Login() {
+    const [issues, setIssues] = useState([]);
 
     const [showPassword, setShowPassword] = useState(false);
 const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [stats, setStats] = useState({
+    issuesReported: 0,
+    residentsHelped: 0,
+    aiSuggestions: 0,
+    sustainabilityDrives: 0
+});
 
     // LOADING STATE
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    useEffect(() => {
+
+        const fetchStats = async () => {
+
+            try {
+
+                const res = await axios.get(
+                    "https://smart-community-management-system.onrender.com/api/stats"
+                );
+
+                setStats(res.data);
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+        };
+
+        fetchStats();
+
+    }, []);
+ 
 
    const handleLogin = async (e) => {
 
@@ -60,6 +92,7 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
         
     }
 };
+
 
 return (
 
@@ -150,26 +183,29 @@ return (
         </div>
           <div className="stats-section">
 
-        <div className="stat-card">
-            <h2>50+</h2>
-            <p>Issues Reported</p>
-        </div>
+        <div className="stats-section">
 
-        <div className="stat-card">
-            <h2>5+</h2>
-            <p>AI Suggestions</p>
-        </div>
+    <div className="stat-card">
+        <h2>{stats.issuesReported}</h2>
+        <p>Issues Reported</p>
+    </div>
 
-        <div className="stat-card">
-            <h2>20+</h2>
-            <p>Sustainability Drives</p>
-        </div>
+    <div className="stat-card">
+        <h2>{stats.aiSuggestions}</h2>
+        <p>AI Suggestions</p>
+    </div>
 
-        <div className="stat-card">
-            <h2>200+</h2>
-            <p>Residents Helped</p>
-        </div>
+    <div className="stat-card">
+        <h2>{stats.sustainabilityDrives}</h2>
+        <p>Sustainability Drives</p>
+    </div>
 
+    <div className="stat-card">
+        <h2>{stats.residentsHelped}</h2>
+        <p>Residents Helped</p>
+    </div>
+
+</div>
     </div>
 
     </div>

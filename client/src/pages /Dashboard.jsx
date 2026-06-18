@@ -72,7 +72,8 @@ function Dashboard() {
             // STOP LOADING
             setLoading(false);
 
-            alert("Error submitting issue");
+            
+            toast.error("Error submitting issue");
         }
     };
 
@@ -99,6 +100,7 @@ function Dashboard() {
         } catch (error) {
 
             console.log(error);
+            toast.error("Error fetching issues");
         }
     };
 
@@ -131,7 +133,8 @@ function Dashboard() {
 
             console.log(error);
 
-            alert("Error updating status");
+            
+            toast.error("Failed to Update Status");
         }
     };
 
@@ -173,7 +176,7 @@ function Dashboard() {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
 
-        alert("Logged out");
+        toast.success("Logged out successfully");
 
         window.location.href = "/";
     };
@@ -195,6 +198,15 @@ const pendingIssues = issues.filter(
 const resolvedIssues = issues.filter(
     issue => issue.status === "Resolved"
 ).length;
+const scrollToForm = () => {
+
+    document
+        .getElementById("issue-form")
+        ?.scrollIntoView({
+            behavior: "smooth"
+        });
+
+};
 return (
 
     <div className="container">
@@ -215,9 +227,15 @@ return (
             in one platform.
         </p>
 
-        <button>
-            Report Issue
-        </button>
+       <button
+    onClick={() =>
+        document
+            .getElementById("issue-form")
+            .scrollIntoView({ behavior: "smooth" })
+    }
+>
+    Report Issue
+</button>
 
     </div>
 
@@ -262,7 +280,7 @@ return (
         </div>
             <h3>Create Community Issue</h3>
 
-            <form onSubmit={submitIssue}>
+           <form id="issue-form" onSubmit={submitIssue}>
 
                 <input
                     type="text"
@@ -451,14 +469,15 @@ return (
                         </button>
 
                         <button
-                            onClick={() => deleteIssue(issue._id)}
-                            style={{
-                                marginLeft: "10px",
-                                backgroundColor: "crimson"
+                  onClick={() => deleteIssue(issue._id)}
+                 style={{
+                    marginLeft: "10px",
+                     background: "#e53935",
+                      color: "white"
                             }}
                         >
-                            Delete Issue
-                        </button>
+                        Delete Issue
+                    </button>
                     </>
                 )
             }

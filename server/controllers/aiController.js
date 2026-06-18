@@ -1,7 +1,7 @@
 const getSuggestion = require("../services/aiService");
+const SuggestionLog = require("../models/SuggestionLog");
 
 const generateSuggestion = async (req, res) => {
-
     try {
 
         const { water, electricity, waste } = req.body;
@@ -12,6 +12,7 @@ const generateSuggestion = async (req, res) => {
             waste
         });
 
+        await SuggestionLog.create({});
         res.status(200).json({
             success: true,
             suggestion
